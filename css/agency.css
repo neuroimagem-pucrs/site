@@ -193,11 +193,11 @@ header.masthead .intro-text {
 }
 
 header.masthead .intro-text .intro-lead-in {
-  font-size: 22px;
+  font-size: 52px;
   font-style: italic;
-  line-height: 22px;
+  line-height: 65px;
   margin-bottom: 25px;
-  text-shadow: 1px 1px 1px #000,1px 1px 1px #000;
+  text-shadow: 1px 1px 80px #000,1px 1px 1px #000,1px 1px 6px #000;
   font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
