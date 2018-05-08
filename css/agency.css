@@ -125,6 +125,7 @@ img::-moz-selection {
 
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
   color: #fec503;
+   text-shadow: 1px 1px 1px #000,1px 1px 1px #000;
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
@@ -139,6 +140,7 @@ img::-moz-selection {
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #fed136;
+  text-shadow: 1px 1px 1px #000,1px 1px 1px #000;
 }
 
 @media (min-width: 992px) {
