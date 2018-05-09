@@ -176,7 +176,8 @@ img::-moz-selection {
 header.masthead {
   text-align: center;
   color: white;
-  background-image: url("../img/header-bg.jpg"), linear-gradient(#fff, #000);
+  background-image: url("../img/header-bg.jpg"), linear-gradient(#fff, #9c9c9c);
+  background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
