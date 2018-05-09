@@ -192,11 +192,11 @@ header.masthead .intro-text {
 }
 
 header.masthead .intro-text .intro-lead-in {
-  font-size: 52px;
-  font-style: italic;
-  line-height: 65px;
+  font-size: 50px;
+  font-style: normal;
+  line-height: 50px;
   margin-bottom: 25px;
-  font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /*font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
 }
 
 header.masthead .intro-text .intro-heading {
@@ -213,12 +213,16 @@ header.masthead .intro-text .intro-heading {
     padding-bottom: 200px;
   }
   header.masthead .intro-text .intro-lead-in {
-    font-size: 50px;
+    font-size: 60px;
     font-style: normal;
-    line-height: 58px;
+    line-height: 68px;
     margin-bottom: 25px;
-    text-shadow: 1px 1px 80px #000,1px 1px 1px #000,1px 1px 4px #000;
-    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-left: -100px;
+    margin-right: -100px;
+    text-shadow: 1px 4px 3px rgba(0, 0, 0, 0.61), 1px 1px 60px rgba(0, 0, 0, 0.42), 0px 18px 23px rgba(0, 0, 0, 0.16);
+    /*text-shadow: 1px 1px 80px #000,1px 1px 1px #000,1px 1px 4px #000;*/
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /*font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
   }
   header.masthead .intro-text .intro-heading {
     font-size: 75px;
