@@ -65,19 +65,19 @@ section h3.section-subheading {
 }
 
 .btn-xl {
-  font-size: 14px;
-  padding: 8px 10px;
+  font-size: 12px;
+  padding: 7px 20px;
 }
 
 .btn-primary {
-  background-color: #fffef9;
-  border-color: #0e0b00;
+  background-color: white;
+  border-color: gray;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
   background-color: black !important;
   border-color: white !important;
-  color: white;
+  color: gray;
 }
 
 .btn-primary:active, .btn-primary:focus {
