@@ -672,6 +672,27 @@ header.masthead2 .intro-text .intro-heading {
   margin-top: 0;
 }
 
+.tutorials-pic {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.tutorials-pic img {
+  width: 150px;
+  height: 150px;
+  border: 0px solid #fff;
+}
+
+.tutorials-pic h4 {
+  margin-top: 25px;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+.tutorials-pic p {
+  margin-top: 0;
+}
+
 section#contact {
   background-color: #212529;
   background-image: url("../img/map-image.png");
