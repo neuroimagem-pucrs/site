@@ -70,14 +70,14 @@ section h3.section-subheading {
 }
 
 .btn-primary {
-  background-color: white;
+  background-color: gray;
   border-color: gray;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: black !important;
-  border-color: white !important;
-  color: gray;
+  background-color: teal !important;
+  border-color: teal !important;
+  color: white;
 }
 
 .btn-primary:active, .btn-primary:focus {
