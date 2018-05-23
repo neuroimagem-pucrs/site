@@ -414,6 +414,11 @@ header.masthead2 .intro-text .intro-heading {
   font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.portfolio-modal .modal-content p.item-body {
+   line-height: 1.75;
+   text-align: justify;
+}
+
 .portfolio-modal .modal-content ul.list-inline {
   margin-top: 0;
   margin-bottom: 30px;
