@@ -385,6 +385,7 @@ header.masthead2 .intro-text .intro-heading {
 
 .portfolio-modal {
   padding-right: 0px !important;
+  padding-left: 260px; /*altera a centralização do modal*/
 }
 
 .portfolio-modal .modal-dialog {
