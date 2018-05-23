@@ -396,6 +396,11 @@ header.masthead2 .intro-text .intro-heading {
 .portfolio-modal .modal-content {
   padding: 100px 0;
   text-align: center;
+  /*alteração para inclusão de header
+  background-image: linear-gradient(#4aacffeb 7%, #4aacffeb 22.5%, white 7%, white 100%)
+  ou
+  linear-gradient(#ff00008f 7%, #b90101ab 22.5%, white 7%, white 100%)
+  */
 }
 
 .portfolio-modal .modal-content h2 {
