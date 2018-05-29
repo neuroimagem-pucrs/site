@@ -70,7 +70,7 @@
             </table>
             
             <p> </p>           
-            <h4>Manual de utilização do LAD:</h4>
+            <h4 style="color:#01A9DB">Manual de utilização do LAD:</h4>
             <a href="manual.pdf" download="manual_lad.pdf">Baixe aqui!</a>
             <p> </p>
         
@@ -83,10 +83,10 @@
             <p>Também é possível adicionar as linhas acima no seu arquivo <i><b>.bashrc</b></i> (no final do arquivo).</p>
             <p> </p>
         
-            <h4>Tutorial básico de processamento no LAD</h4>
+            <h4 style="color:#01A9DB">Tutorial básico de processamento no LAD</h4>
             <p>Antes de seguir recomenda-se a leitura do pdf acima.</p>
             <p><b>1º</b> - Transfira para o LAD <b>somente</b> os dados necessários para o pré-processamento (arquivos dicom são desnecessários):</p>
-            <p><b><h5>Exemplo 1:</h5></b> Transferir todo um projeto (previamente organizado) para o LAD:</p>
+            <p><b><h6>Exemplo 1:</h6></b> Transferir todo um projeto (previamente organizado) para o LAD:</p>
             <table border="1" align="center">
               <tr>
                 <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/ </p></td>
@@ -99,7 +99,7 @@
             <p>Essas observações servem para todos os exemplos!</p>
             
             <p> </p>
-            <p><b><h5>Exemplo 2:</h5></b> Transferir uma visita específica de um projeto (previamente organizado) para o LAD:</p>
+            <p><b><h6>Exemplo 2:</h6></b> Transferir uma visita específica de um projeto (previamente organizado) para o LAD:</p>
             <table border="1" align="center">
               <tr>
                 <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA/GON*/visit2 --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/</p></td>
@@ -109,7 +109,7 @@
             <p>É possível utilizar * para varrer todas as combinações.</p>
             
             <p> </p>
-            <p><b><h5>Exemplo 3:</h5></b> Transferir todo um projeto (previamente organizado) para o LAD, evitando transferir algum diretório PROC:</p>
+            <p><b><h6>Exemplo 3:</h6></b> Transferir todo um projeto (previamente organizado) para o LAD, evitando transferir algum diretório PROC:</p>
             <table border="1" align="center">
               <tr>
                 <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' --exclude='PROC.RST' --exclude='PROC.MOT.BLOCK' usuario@inscer.lad.pucrs.br:~/</p></td>
