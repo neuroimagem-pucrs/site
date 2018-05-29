@@ -65,8 +65,7 @@
             <p>Acesso ao Inscer LAD:</p>
             <table align="center">
                <tr>
-                 <td bgcolor="lightgray">ssh <i>usuario</i>@192.168.1.79</td>
-                 <td bgcolor="lightgray">ssh <i>usuario</i>@inscer.lad.pucrs.br</td>
+                 <td bgcolor="lightgray">ssh <i>usuario</i>@192.168.1.79 <p>ssh <i>usuario</i>@inscer.lad.pucrs.br</p></td>
               </tr>
             </table>
             
@@ -90,14 +89,40 @@
             <p><b><h5>Exemplo 1:</h5></b> Transferir todo um projeto (previamente organizado) para o LAD:</p>
             <table border="1" align="center">
               <tr>
-                <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/<i>DESTINO</i> </p></td>
+                <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/ </p></td>
               </tr>   
             </table>
-           
+            <p> </p>
             <p>Utilize essa opção quando o projeto é <b>novo</b> (recém criado), cujo os diretórios de sujeitos contenham apenas os arquivos NIFTI's. Observe que a flag <b>--exclude</b> vai evitar a transferência do dicom compactado de todos os sujeitos.</p>
             <p>A flag <b>--relative</b> é importante, pois vai recriar toda a estrutura de pastas no destino, incluindo a própria pasta <b>GONDOLA</b>.</p>     
             <p><b>Importante:</b> Sempre execute esse comando a partir do diretório DATA, pois se você digitar <b><i>"--relative /media/DATA/GONDOLA"</i></b>, no destino será recriado toda essa estrutura, ou seja, sua home no LAD ficará <i><b>/home/usuario/media/DATA/GONDOLA/...</b></i></p>
             <p>Essas observações servem para todos os exemplos!</p>
+            
+            <p> </p>
+            <p><b><h5>Exemplo 2:</h5></b> Transferir uma visita específica de um projeto (previamente organizado) para o LAD:</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA/GON*/visit2 --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/</p></td>
+              </tr>   
+            </table>
+            <p> </p>
+            <p>É possível utilizar * para varrer todas as combinações.</p>
+            
+            <p> </p>
+            <p><b><h5>Exemplo 3:</h5></b> Transferir todo um projeto (previamente organizado) para o LAD, evitando transferir algum diretório PROC:</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' --exclude='PROC.RST' --exclude='PROC.MOT.BLOCK' usuario@inscer.lad.pucrs.br:~/</p></td>
+              </tr>   
+            </table>
+            <p> </p>
+            <p>O comando acima vai transferir todo o projeto evitando as pastas <b>PROC.RST</b> e <b>PROC.MOT.BLOCK</b> de todos os sujeitos. Você pode inserir quantos <b>--exclude</b> quiser. Também poderia ser executado da seguinte forma, caso seja necessário evitar a transferência de todos os PROC's:</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' --exclude='PROC.*' usuario@inscer.lad.pucrs.br:~/</p></td>
+              </tr>   
+            </table>
+            
             
           </div>
         </div>
