@@ -61,35 +61,36 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h2>Como utilizar o Cluster do LAD</h2>
+            <p> </p>
+            <h4>Manual de utilização do LAD:</h4>
+            <!-- Inserir PDF -->
+            <p> </p>
+        
+            <p>Para organizar o ambiente do seu usuário, basta executar o comando <i>source</i> da aplicação desejada (comandos listados abaixo) após a alocação de alguma máquina do Cluster, ou adicionar o comando no script <i><b>BatchJob</i></b></p>
+            <ul align="left">
+              <li><b>AFNI</b>: "source /usr/local/afni/afni-vars.sh</li>
+              <li><b>FSL</b>: "source /usr/local/fsl/fsl-vars.sh"</li>
+              <li><b>FreeSurfer</b>: "source /usr/local/freesurfer/freesurfer-vars.sh"</li> 
+            </ul>
+            <p>Também é possível adicionar as linhas acima no seu arquivo <i><b>.bashrc</b></i> (no final do arquivo).</p>
+            <p> </p>
+        
+            <h4>Tutorial básico de processamento no LAD</h4>
+            <p>Antes de seguir recomenda-se a leitura do pdf acima.</p>
+            <p><b>1º</b> - Transfira para o LAD <b>somente</b> os dados necessários para o pré-processamento (arquivos dicom são desnecessários):</p>
+            <p><b>Exemplo 1:</b> Transferir todo um projeto (previamente organizado) para o LAD:</p>
+            <table border="1">
+              <tr>
+                <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/<i>DESTINO</i> </p></td>
+              </tr>   
+            </table>
+            <ul align="left">
+              <li> Utilize essa opção quando o projeto é <b>novo</b> (recém criado), cujo os diretórios de sujeitos contenham apenas os arquivos NIFTI's. Observe que a flag <b>--exclude</b> vai evitar a transferência do dicom compactado de todos os sujeitos.</li>
+              <li> A flag <b>--relative</b> é importante, pois vai recriar toda a estrutura de pastas no destino, incluindo a própria pasta <b>GONDOLA</b>.</li>     
+            </ul>
+            
           </div>
         </div>
-        <p> </p>
-        <h4>Manual de utilização do LAD:</h4>
-        <!-- Inserir PDF -->
-        <p> </p>
-        
-        <p>Para organizar o ambiente do seu usuário, basta executar o comando <i>source</i> da aplicação desejada (comandos listados abaixo) após a alocação de alguma máquina do Cluster, ou adicionar o comando no script <i><b>BatchJob</i></b></p>
-        <ul align="left">
-          <li><b>AFNI</b>: "source /usr/local/afni/afni-vars.sh</li>
-          <li><b>FSL</b>: "source /usr/local/fsl/fsl-vars.sh"</li>
-          <li><b>FreeSurfer</b>: "source /usr/local/freesurfer/freesurfer-vars.sh"</li> 
-        </ul>
-        <p>Também é possível adicionar as linhas acima no seu arquivo <i><b>.bashrc</b></i> (no final do arquivo).</p>
-        <p> </p>
-        
-        <h4>Tutorial básico de processamento no LAD</h4>
-        <p>Antes de seguir recomenda-se a leitura do pdf acima.</p>
-        <p><b>1º</b> - Transfira para o LAD <b>somente</b> os dados necessários para o pré-processamento (arquivos dicom são desnecessários):</p>
-        <p><b>Exemplo 1:</b> Transferir todo um projeto (previamente organizado) para o LAD:</p>
-        <table border="1">
-          <tr>
-            <td bgcolor="lightgray">cd /media/DATA <p>rsync -phav --relative GONDOLA --exclude='dicom.tar.gz' usuario@inscer.lad.pucrs.br:~/<i>DESTINO</i> </p></td>
-          </tr>   
-        </table>
-        <ul align="left">
-          <li> Utilize essa opção quando o projeto é <b>novo</b> (recém criado), cujo os diretórios de sujeitos contenham apenas os arquivos NIFTI's. Observe que a flag <b>--exclude</b> vai evitar a transferência do dicom compactado de todos os sujeitos.</li>
-          <li> A flag <b>--relative</b> é importante, pois vai recriar toda a estrutura de pastas no destino, incluindo a própria pasta <b>GONDOLA</b>.</li>     
-        </ul>    
       </div>
     </section> 
                 
