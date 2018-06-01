@@ -17,7 +17,7 @@ a {
 }
 
 a:hover {
-  color: #01A9DB;
+  color: #006482; /* Cor dos links com o mouse em cima */
 }
 
 .text-primary {
