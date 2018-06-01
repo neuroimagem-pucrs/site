@@ -90,7 +90,7 @@ section h3.section-subheading {
 }
 
 ::selection {
-  background: #fed136;
+  background: #c4effc;
   text-shadow: none;
 }
 
@@ -118,7 +118,7 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-brand { /* Texto cursivo "instituto do cérebro" */
-  color: #fed136;
+  color: #01A9DB;
   text-shadow: 1px 1px 1px #000,1px 1px 1px #000;
   font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
