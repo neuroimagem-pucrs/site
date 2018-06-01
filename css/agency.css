@@ -21,7 +21,7 @@ a:hover {
 }
 
 .text-primary {
-  color: #fed136 !important;
+  color: #01a9db !important;
 }
 
 h1,
@@ -85,7 +85,7 @@ section h3.section-subheading {
 }
 
 ::-moz-selection {
-  background: #fed136;
+  background: #01a9db;
   text-shadow: none;
 }
 
