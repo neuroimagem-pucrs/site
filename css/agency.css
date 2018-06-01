@@ -13,11 +13,11 @@ p {
 }
 
 a {
-  color: #01a9db;
+  color: #01a9db; /* Cor dos links */
 }
 
 a:hover {
-  color: #006482; /* Cor dos links com o mouse em cima */
+  color: #fff; 
 }
 
 .text-primary {
