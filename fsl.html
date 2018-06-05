@@ -93,8 +93,7 @@
           
           <p></p>
           <h3 style="color:#01A9DB">DIFTI:</h3>
-          <p>Fazer inputs manualmente</p>
-          <p>Inputs:</p>
+          <p>Fazer inputs manualmente:</p>
           <ul align="left">
             <li><b>data.nii.gz</b> (corrigida)</li>
             <li><b>data_brain_mask.nii.gz</b> (mask)</li>
@@ -103,18 +102,8 @@
             <li><b>GO</b></li>
           </ul>
           <p>Outputs:</p>
-          <ul align="left">
-            <li><b>dti_FA.nii.gz</b></li>
-            <li><b>dti_MD.nii.gz</b></li>
-            <li>dti_MO.nii.gz</li>
-            <li>dti_V1.nii.gz</li>
-            <li>dti_V2.nii.gz</li>
-            <li>dti_V3.nii.gz</li>
-            <li>dti_L1.nii.gz</li>
-            <li>dti_L2.nii.gz</li>
-            <li>dti_L3.nii.gz</li>
-            <li>dti_S0.nii.gz</li>
-          </ul>
+          <p><b>dti_FA.nii.gz</b> ; <b>dti_MD.nii.gz</b> ; dti_MO.nii.gz ; dti_V1.nii.gz ; dti_V2.nii.gz ; dti_V3.nii.gz ; dti_L1.nii.gz ; dti_L2.nii.gz ; dti_L3.nii.gz ; dti_S0.nii.gz</p>
+                   
           <figure>
             <img class="img-fluid" src="img/3_fsl.png" alt="">           
           </figure>
@@ -153,10 +142,11 @@
               </td>
             </tr>
           </table>
-          
+          <p> </p>
           <p>Basta configurar o script para seus diretórios e nomes de sujeitos. O arquivo <i>dwi.nii.gz</i> e os arquivos <i>.bvec</i> e <i>.bval</i> devem ter seus nomes alterados conforme o script ou a preferência. </p>
-          
+          <p> </p>
           <h3 style="color:#01A9DB">TBSS - Processamento:</h3>
+          <p> </p>
           <p>1 - Criar uma pasta onde será realizado o TBSS e copiar os arquivos de <i>dti_FA.nii.gz</i> dos sujeitos para a pasta. </p>
           <p>2 - Trocar os nomes dos arquivos pela identificação dos sujeitos - na hora em que serão extraídos os valores de FA eles estarão nesta ordem.</p>
           <p>Na pasta com os arquivos de FA, realizar os 3 primeiros passos de processamento, da seguinte forma:</p>
@@ -170,10 +160,11 @@
               </td>
             </tr>
           </table>
+          <p> </p>
           <figure>
             <img class="img-fluid" src="img/6_fsl.png" alt="">
           </figure>
-          
+          <p> </p>
           <p>Processamento:</p>
           <ul align="left">
             <li>Remoção de alguns artefatos</li>
@@ -183,12 +174,10 @@
           </ul>
           
           <p>O processamento inicial tem como outputs principais:</p>
-          <ul align="left">
-            <li><b>mean_FA_skeleton.nii.gz</b></li>
-            <li><b>mean_FA.nii.gz</b></li>
-            <li><b>mean_FA_mask.nii.gz</b></li>
-            <li><b>all_FA.nii.gz</b></li> 
-          </ul>        
+          <p><b>mean_FA_skeleton.nii.gz</b></p>
+          <p><b>mean_FA.nii.gz</b></p>
+          <p><b>mean_FA_mask.nii.gz</b></p>
+          <p><b>all_FA.nii.gz</b></p> 
           
           <p>Voltar para a pasta tbss e rodar o último processamento</p>
           <table align="center">
@@ -201,7 +190,7 @@
           
           <p>O último comando determina o threshold para <b>mean_FA</b> e projeta os mapas em um arquivo de esqueleto 4D que alimentará a análise estatística.</p>
           <p>Output: <b>all_FA_skeletonised.nii.gz</b></p>
-          
+          <p> </p>
           <h3 style="color:#01A9DB">TBSS - General Linear Model (Análise):</h3>
           
         </div>
