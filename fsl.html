@@ -136,6 +136,26 @@
             <figcaption><small>Com modulação</small></figcaption>
           </figure>
           
+          <p></p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">#! /bin/bash
+                <p># Realiza o pré-processamento dos arquivos de DWI até o cálculo dos mapas de FA</p>
+                <p># Inclui: EDDY CURRENT CORRECTION ; BRAIN MASK EXTRACTION ; FITTING TENSORS </p>
+                <p>subj = 01</p>
+                <p>pasta = /caminho_até_diretório/DTI_${subj}</p>
+                <p></p>
+                <p>cd ${pasta}</p>
+                <p>     eddy_correct dwi.nii.gz dwic.nii.gz 0</p>
+                <p>     bet dwic.nii.gz dti_brain.nii.gz -f 0.35 -m</p>
+                <p>     dtifit -k dwic.nii.gz -m dti_brain.nii.gz -r ${subj}.bvec -b ${subj}.bval</p>
+                <p></p>
+                <p>cp ${pasta}/${subj}_FA.nii.gz /caminho_até_diretório_para_análise/ [OPCIONAL]</p>
+                <p></p>
+                <p>echo done</p>
+              </td>
+            </tr>
+          </table>
           
         </div>
       </div>
