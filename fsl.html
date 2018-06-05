@@ -137,25 +137,68 @@
           </figure>
           
           <p></p>
-          <table align="left">
+          <table align="center">
             <tr>
               <td bgcolor="lightgray">#! /bin/bash
                 <p># Realiza o pré-processamento dos arquivos de DWI até o cálculo dos mapas de FA</p>
                 <p># Inclui: EDDY CURRENT CORRECTION ; BRAIN MASK EXTRACTION ; FITTING TENSORS </p>
                 <p>subj = 01</p>
                 <p>pasta = /caminho_até_diretório/DTI_${subj}</p>
-                <p></p>
                 <p>cd ${pasta}</p>
-                <p>     eddy_correct dwi.nii.gz dwic.nii.gz 0</p>
-                <p>     bet dwic.nii.gz dti_brain.nii.gz -f 0.35 -m</p>
-                <p>     dtifit -k dwic.nii.gz -m dti_brain.nii.gz -r ${subj}.bvec -b ${subj}.bval</p>
-                <p></p>
+                <p>eddy_correct dwi.nii.gz dwic.nii.gz 0</p>
+                <p>bet dwic.nii.gz dti_brain.nii.gz -f 0.35 -m</p>
+                <p>dtifit -k dwic.nii.gz -m dti_brain.nii.gz -r ${subj}.bvec -b ${subj}.bval</p>
                 <p>cp ${pasta}/${subj}_FA.nii.gz /caminho_até_diretório_para_análise/ [OPCIONAL]</p>
-                <p></p>
                 <p>echo done</p>
               </td>
             </tr>
           </table>
+          
+          <p>Basta configurar o script para seus diretórios e nomes de sujeitos. O arquivo <i>dwi.nii.gz</i> e os arquivos <i>.bvec</i> e <i>.bval</i> devem ter seus nomes alterados conforme o script ou a preferência. </p>
+          
+          <h3 style="color:#01A9DB">TBSS - Processamento:</h3>
+          <p>1 - Criar uma pasta onde será realizado o TBSS e copiar os arquivos de <i>dti_FA.nii.gz</i> dos sujeitos para a pasta. </p>
+          <p>2 - Trocar os nomes dos arquivos pela identificação dos sujeitos - na hora em que serão extraídos os valores de FA eles estarão nesta ordem.</p>
+          <p>Na pasta com os arquivos de FA, realizar os 3 primeiros passos de processamento, da seguinte forma:</p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">tbss_1_preproc *.nii.gz
+                <p>tbss_2_reg -T</p>
+                <p>tbss_3_postreg -S</p>
+                <p>cd stats</p>
+                <p>fsleyes -std1mm mean_FA -cm red-yellow -dr 0.2 0.6 &</p>
+              </td>
+            </tr>
+          </table>
+          <figure>
+            <img class="img-fluid" src="img/6_fsl.png" alt="">
+          </figure>
+          
+          <p>Processamento:</p>
+          <ul align="left">
+            <li>Remoção de alguns artefatos</li>
+            <li>Criação de uma pasta FA (novos arquivos processados) e origdata (arquivos originais)</li>
+            <li>Alinhamento de todos as FA em um template do FSL chamado FMRIB58_FA</li>
+            <li>Fusão e registro das FA em um espaço padrão 1x1x1mm - Criação de um esqueleto com as FA</li> 
+          </ul>
+          
+          <p>O processamento inicial tem como outputs principais:</p>
+          <ul align="left">
+            <li><b>mean_FA_skeleton.nii.gz</b></li>
+            <li><b>mean_FA.nii.gz</b></li>
+            <li><b>mean_FA_mask.nii.gz</b></li>
+            <li><b>all_FA.nii.gz</b></li> 
+          </ul>        
+          
+          <p>Voltar para a pasta tbss e rodar o último processamento</p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">cd ..
+                <p>tbss_4_prestats 0.3</p>
+              </td>
+            </tr>
+          </table>
+          
           
         </div>
       </div>
