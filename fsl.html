@@ -178,7 +178,6 @@
           <p><b>mean_FA.nii.gz</b></p>
           <p><b>mean_FA_mask.nii.gz</b></p>
           <p><b>all_FA.nii.gz</b></p> 
-          
           <p>Voltar para a pasta tbss e rodar o último processamento</p>
           <table align="center">
             <tr>
@@ -186,12 +185,83 @@
                 <p>tbss_4_prestats 0.3</p>
               </td>
             </tr>
-          </table>
-          
+          </table>     
+          <p> </p>
           <p>O último comando determina o threshold para <b>mean_FA</b> e projeta os mapas em um arquivo de esqueleto 4D que alimentará a análise estatística.</p>
           <p>Output: <b>all_FA_skeletonised.nii.gz</b></p>
+          
           <p> </p>
           <h3 style="color:#01A9DB">TBSS - General Linear Model (Análise):</h3>
+          <p> </p>
+          <p>Entrar no diretório de stats e iniciar a ferramenta estatística:</p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">cd stats
+                <p>Glm</p>
+              </td>
+            </tr>
+          </table>  
+          <p> </p>
+          <p>Aqui deve-se selecionar o número de sujeitos que entrarão no modelo (inputs) <b><u>NA ORDEM ALFABÉTICA QUE FORAM PROCESSADOS</u></b>. Na interface do GLM clicar em Wizard e desenhar o modelo que deseja-se trabalhar (número de contrastes, grupo, ...). Salvar o modelo no diretório stats como <i>design</i></p>
+          <p> </p>
+          <h4>Rodar o TBSS randomise</h4>
+          <p> </p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">randomise -i all_FA_skeletonised -o tbss \
+                <p>-m mean_FA_skeleton_mask -d design.mat -t design.con -c 1.5</p>
+              </td>
+            </tr>
+          </table>  
+          <p> </p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">randomise -i all_FA_skeletonised -o tbss \
+                <p>-m mean_FA_skeleton_mask -d design.mat -t design.con --T2 </p>
+              </td>
+            </tr>
+          </table>  
+          <p> </p>
+          <p>Outputs: </p>
+          <ul align="left">
+            <li><b>tbss_tstat1</b> (arquivo cru, sem thresholds)</li>
+            <li><b>tbss_clustere_corrp_tstat1</b> (cluster com os p-values corrigidos para múltiplas comparações)</li> 
+          </ul>
+          <h4>Visualizar os resultados em um threshold para p=0.05</h4>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">fsleyes -std1mm mean_FA_skeleton -cm green -dr .3 .7 \
+                <p>tbss_tstat1 -cm red-yellow -dr 1.5 3 \</p>
+                <p>tbss_clustere_corrp_tstat1 -cm blue-lightblue -dr 0.949 1 & </p>
+              </td>
+            </tr>
+          </table>
+          <p> </p>
+          <p>Em azul - tractos que atingiram threshold (p=0.05)</p>
+          <figure>
+            <img class="img-fluid" src="img/7_fsl.png" alt="">
+          </figure>
+          <p>Para uma visualização mais "bonita", rodar o seguinte script:</p>
+          <table align="center">
+            <tr>
+              <td bgcolor="lightgray">tbss_fill tbss_clustere_corrp_tstat1 0.95 \
+                <p>mean_FA tbss_clustere_corrp_tstat1_filled</p>
+                <p>fsleyes -std1mm mean_FA_skeleton -cm green -dr .3 .7 \</p>
+                <p>tbss_clustere_corrp_tstat1_filled.nii.gz -cm red-yellow </p>
+              </td>
+            </tr>
+          </table>
+          <p> </p>
+          <p>Os tractos que atingirem o threshold (p=0.05) ficarão em vermelho e mais "cheios".</p>
+          <figure>
+            <img class="img-fluid" src="img/8_fsl.png" alt="">
+          </figure>
+          <p>Pode-se utilizar algum atlas para identificar os tractos estatisticamente significativos.</p>
+          
+          <p> </p>
+          <h4>Análise de Regiões de Interesse (ROIs) e extração de valores de Fração de Anisotropia (FA)</h4>
+          <p> </p>
+          
           
         </div>
       </div>
