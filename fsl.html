@@ -261,7 +261,95 @@
           <p> </p>
           <h4>Análise de Regiões de Interesse (ROIs) e extração de valores de Fração de Anisotropia (FA)</h4>
           <p> </p>
+          <p>#Para esta parte do guia utilizaremos o atlas de DTI da Johns Hopkins University (JHU) e a ferramenta <b>"fslmeants"</b> do FSL</p>
+          <p>1. Publicação do Atlas: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2885858/">Link</a> </p>
+          <p>O atlas que vem com o FSL chamado <b>JHU-ICBM-labels-1mm.nii.gz</b> descreve 48 ROIs em substância branca e define coordenadas de probabilidade onde passam os tractos de interesse no espaço MNI152.</p>
+          <p>Podemos criar máscaras utilizando fslmaths e as coordenadas já pré definidas por este atlas e extrair valores médios de FA utilizando essas máscaras, correspondendo aos valores médios de FA nos tractos de interesse de cada estudo.</p>
+          <p>As ROIs e seus respectivos índices dentro do atlas são as seguintes:</p>
+          <ul align="left">
+            <li><i>1>Cerebellar Penducle</i></li>
+            <li><i>2>Pontine crossing tract (a part of MCP)</i></li>
+            <li><i>3>Genu of corpus callosum</i></li>
+            <li><i>4>Body of corpus callosum</i></li>
+            <li><i>5>Splenium of corpus callosum </i></li>
+            <li><i>6>Fornix (column and body of fornix)</i></li>
+            <li><i>7>Corticospinal tract R </i></li>
+            <li><i>8>Corticospinal tract L </i></li>
+            <li><i>9>Medial lemniscus R </i></li>
+            <li><i>10>Medial lemniscus L </i></li>
+            <li><i>11>Inferior cerebellar peduncle R </i></li>
+            <li><i>12>Inferior cerebellar peduncle L </i></li>
+            <li><i>13>Superior cerebellar peduncle R </i></li>
+            <li><i>14>Superior cerebellar peduncle L</i></li>
+            <li><i>15>Cerebral peduncle R</i></li>
+            <li><i>16>Cerebral peduncle L </i></li>
+            <li><i>17>Anterior limb of internal capsule R </i></li>
+            <li><i>18>Anterior limb of internal capsule L</i></li>
+            <li><i>19>Posterior limb of internal capsule R</i></li>
+            <li><i>20>Posterior limb of internal capsule L </i></li>
+            <li><i>21>Retrolenticular part of internal capsule R</i></li>
+            <li><i>22>Retrolenticular part of internal capsule L</i></li>
+            <li><i>23>Anterior corona radiata R</i></li>
+            <li><i>24>Anterior corona radiata L </i></li>
+            <li><i>25>Superior corona radiata R </i></li>
+            <li><i>26>Superior corona radiata L </i></li>
+            <li><i>27>Posterior corona radiata R</i></li>
+            <li><i>28>Posterior corona radiata L</i></li>
+            <li><i>29>Posterior thalamic radiation (include optic radiation) R </i></li>
+            <li><i>30>Posterior thalamic radiation (include optic radiation) L </i></li>
+            <li><i>31>Sagittal stratum (include inferior longitidinal fasciculus and inferior fronto-occipital fasciculus) R </i></li>
+            <li><i>32>Sagittal stratum (include inferior longitidinal fasciculus and inferior fronto-occipital fasciculus) L </i></li>
+            <li><i>33>External capsule R </i></li>
+            <li><i>34>External capsule L </i></li>
+            <li><i>35>Cingulum (cingulate gyrus) R </i></li>
+            <li><i>36>Cingulum (cingulate gyrus) L </i></li>
+            <li><i>37>Cingulum (hippocampus) R</i></li>
+            <li><i>38>Cingulum (hippocampus) L</i></li>
+            <li><i>39>Fornix (cres) / Stria terminalis (can not be resolved with current resolution) R</i></li>
+            <li><i>40>Fornix (cres) / Stria terminalis (can not be resolved with current resolution) L </i></li>
+            <li><i>41>Superior longitudinal fasciculus R</i></li>
+            <li><i>42>Superior longitudinal fasciculus L</i></li>
+            <li><i>43>Superior fronto-occipital fasciculus (could be a part of anterior internal capsule) R </i></li>
+            <li><i>44>Superior fronto-occipital fasciculus (could be a part of anterior internal capsule) L </i></li>
+            <li><i>45>Uncinate fasciculus R</i></li>
+            <li><i>46>Uncinate fasciculus L </i></li>
+            <li><i>47>Tapetum R</i></li>
+            <li><i>48>Tapetum L</i></li>
+            
+            <p> </p>
+            <p>Para extrair os valores basta utilizar o seguinte script <b>dentro da pasta do stats</b>:</p>
+            <table align="center">
+              <tr>
+                <td bgcolor="lightgray">#! /bin/bash
+                  <p>#Extração de valores de FA para ROIs</p>
+                  <p>#Colocar os roinum conforme o atlas JHU para ROIs</p>
+                  <p>dir=[caminho_diretório_stats] </p>
+                  <p>cd $dir </p>
+                  <p>for roinum in 5 6 7 8 9 10 12 ; do</p>
+                  <p>   fslmaths /usr/local/fsl/data/atlases/JHU/JHU-ICBM-labels-1mm.nii.gz -thr $roinum -uthr $roinum -bin roimask </p>
+                  <p>   fslmaths roimask -mas mean_FA_skeleton_mask.nii.gz -bin roimask </p>
+                  <p>   padroi=`$FSLDIR/bin/zeropad $roinum 3` </p>
+                  <p>   fslmeants -i all_FA_skeletonised.nii.gz -m roimask -o meants_roi${padroi}.txt </p>
+                  <p>done</p>
+                  <p>paste meants_roi*.txt > allmeants_roi.txt</p>
+                </td>
+              </tr>
+            </table>
+            <p> </p>
+            <p>Sendo que na primeira linha deve-se colocar os índices das ROIs que deseja-se extrair. Lembrando que os valores virão conforme a <u><b>ordem alfabética em que foram processados</b></u> na etapa inicial do TBSS. </p>
+            <p> </p>
+            <p><big>JHU-ICBM-labels-1mm - Atlas</big></p>
+            <figure>
+              <img class="img-fluid" src="img/9_fsl.png" alt="">
+            </figure>
+            
+            <h5>FIM.</h5>
+            <p>Boas análises!</p>
+            
+            <p>Referências: <a href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/TBSS/UserGuide">UserGuide</a> S.M. Smith, M. Jenkinson, H. Johansen-Berg, D. Rueckert, T.E. Nichols, C.E. Mackay, K.E. Watkins, O. Ciccarelli, M.Z. Cader, P.M. Matthews, and T.E.J. Behrens. Tract-based spatial statistics: Voxelwise analysis of multi-subject diffusion data. NeuroImage, 31:1487-1505, 2006. </p>
+            <p>Dúvidas ou sugestões: <u><b>rafael.sommer@acad.pucrs.br</b></u> </p>
           
+          </ul>
           
         </div>
       </div>
