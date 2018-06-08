@@ -109,7 +109,7 @@
           </figure>
           
           <p>Visualização dos mapas de FA (com ou sem modulação por V1) via terminal:</p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">cd [caminho_diretorio_subj] <p>fsleyes dti_FA.nii.gz</p></td>
             </tr>
@@ -126,7 +126,7 @@
           </figure>
           
           <p></p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">#! /bin/bash
                 <p># Realiza o pré-processamento dos arquivos de DWI até o cálculo dos mapas de FA</p>
@@ -150,7 +150,7 @@
           <p>1 - Criar uma pasta onde será realizado o TBSS e copiar os arquivos de <i>dti_FA.nii.gz</i> dos sujeitos para a pasta. </p>
           <p>2 - Trocar os nomes dos arquivos pela identificação dos sujeitos - na hora em que serão extraídos os valores de FA eles estarão nesta ordem.</p>
           <p>Na pasta com os arquivos de FA, realizar os 3 primeiros passos de processamento, da seguinte forma:</p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">tbss_1_preproc *.nii.gz
                 <p>tbss_2_reg -T</p>
@@ -179,7 +179,7 @@
           <p><b>mean_FA_mask.nii.gz</b></p>
           <p><b>all_FA.nii.gz</b></p> 
           <p>Voltar para a pasta tbss e rodar o último processamento</p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">cd ..
                 <p>tbss_4_prestats 0.3</p>
@@ -194,7 +194,7 @@
           <h3 style="color:#01A9DB">TBSS - General Linear Model (Análise):</h3>
           <p> </p>
           <p>Entrar no diretório de stats e iniciar a ferramenta estatística:</p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">cd stats
                 <p>Glm</p>
@@ -206,7 +206,7 @@
           <p> </p>
           <h4>Rodar o TBSS randomise</h4>
           <p> </p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">randomise -i all_FA_skeletonised -o tbss \
                 <p>-m mean_FA_skeleton_mask -d design.mat -t design.con -c 1.5</p>
@@ -214,7 +214,7 @@
             </tr>
           </table>  
           <p> </p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">randomise -i all_FA_skeletonised -o tbss \
                 <p>-m mean_FA_skeleton_mask -d design.mat -t design.con --T2 </p>
@@ -228,7 +228,7 @@
             <li><b>tbss_clustere_corrp_tstat1</b> (cluster com os p-values corrigidos para múltiplas comparações)</li> 
           </ul>
           <h4>Visualizar os resultados em um threshold para p=0.05</h4>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">fsleyes -std1mm mean_FA_skeleton -cm green -dr .3 .7 \
                 <p>tbss_tstat1 -cm red-yellow -dr 1.5 3 \</p>
@@ -242,7 +242,7 @@
             <img class="img-fluid" src="img/7_fsl.png" alt="">
           </figure>
           <p>Para uma visualização mais "bonita", rodar o seguinte script:</p>
-          <table align="center">
+          <table border="1" align="center">
             <tr>
               <td bgcolor="lightgray">tbss_fill tbss_clustere_corrp_tstat1 0.95 \
                 <p>mean_FA tbss_clustere_corrp_tstat1_filled</p>
@@ -318,7 +318,7 @@
           </ul> 
             <p> </p>
             <p>Para extrair os valores basta utilizar o seguinte script <b>dentro da pasta do stats</b>:</p>
-            <table align="center">
+            <table border="1" align="center">
               <tr>
                 <td bgcolor="lightgray">#! /bin/bash
                   <p>#Extração de valores de FA para ROIs</p>
