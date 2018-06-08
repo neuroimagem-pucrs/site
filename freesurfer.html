@@ -168,7 +168,7 @@
             <p> </p>
             <h5>3. Processamento Longitudinal - Long</h5>
             <p>Será realizado o processamento longitudinal de fato, cuja saída terá mais dois diretórios, cada um relacionado ao template criado previamente. É feito então o processamento de cada sujeito com seu template de visita. </p>
-             <table border="1" align="center">
+            <table border="1" align="center">
               <tr>
                 <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
                   <p>cd $SUBJECTS_DIR</p>
@@ -178,7 +178,106 @@
              </tr>
             </table>
             <p> </p>
+            <h3 style="color:#01A9DB">QDEC</h3>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/QdecGroupAnalysis_freeview">Tutorial</a></p>
+            <h5 style="color:#01A9DB">Tabelas para Excel</h5>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/asegstats2table">Tutorial Aseg</a></p>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/aparcstats2table">Tutorial Aparc</a></p>
+            <h5>1. Gerar planilhas do aseg</h5>
+            <p>O script irá gerar uma planilha do arquivo <b>aseg.stats</b> do freesurfer.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">asegstats2table --subjects bert ernie fred --meas volume --tablefile aseg_stats.txt </td>
+              </tr>
+            </table>
+            <p> </p>
+            <p>Esse comando irá combinar os arquivos <b>aseg.stats</b> de bert ernie e fred para gerar a tabela <b>aseg_stats.txt</b>.</p>
             
+            <h5>2. Gerar planilhas do aparc</h5>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">aparcstats2table --subjects bert ernie fred --hemi rh --meas thickness --tablefile aparc_stats.txt </td>
+              </tr>
+            </table>
+            <p> </p>
+            <p>O comando acima irá combinar o arquivo <b>rh.aparc.stats</b> dos sujeitos bert ernie e fred para criar uma tabela <b>aparc_stats.txt</b>, que irá mostrar a grossura de todas as estruturas do arquivo original.</p>
+            <p>Se por acaso você quiser outra informação, como da planilha <b>lh.aparc.a2009s.stats</b> pode-se usar <b>--parc aparc.a2009s</b> e além disso se quiser algo além de grossura pode-se especificar em <b>--meas</b> com area, volume ou meancurve.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">aparcstats2table --hemi rh --subjects bert ernie fred --parc aparc.a2009s --meas meancurve --tablefile lh.a2005s.meancurve.txt</td>
+              </tr>
+            </table>
+            <p> </p>
+            
+            <h5>3. Inspecionando os Dados Longitudinais</h5>
+            <p>Primeiramente vamos inspecionar o template (base) de um único sujeito. Abrir a imagem <b>norm.mgz</b> e superfícies no Freeviwe, na visualização coronal.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">freeview -v OAS2_0001/mri/norm.mgz \
+                  <p>-f OAS2_0001/surf/lh.pial:edgecolor=red \</p>
+                  <p>OAS2_0001/surf/rh.pial:edgecolor=red \</p>
+                  <p>OAS2_0001/surf/lh.white:edgecolor=blue \</p>
+                  <p>OAS2_0001/surf/rh.white:edgecolor=blue </p>
+                </td>
+              </tr>
+            </table>
+            <p> </p>
+            <p>Isto irá mostrar o template (base) que é a anatomia média dos sujeitos ao longo do tempo sobrepostos com a superfície pial e da substância branca. Se o registro disto falhou, será visto uma imagem borrada ou com “fantasmas”. Devem ser inspecionadas as superfícies nesta imagem. Isto é importante quando as superfícies são transferidas no processamento longitudinal, por isso devem estar acuradas na base. Verificar se as superfícies seguem a substância branca e cinzenta. Em seguida, deve-se verificar os resultados longitudinais. Com o comando abaixo, a base e o long estarão no mesmo voxel. Portanto, essas imagens poderão ser diretamente comparadas se abertas uma em cima da outra.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">freeview -v OAS2_0001_MR1.long.OAS2_0001/mri/norm.mgz \
+                  <p>OAS2_0001_MR2.long.OAS2_0001/mri/norm.mgz \</p>
+                  <p>-f OAS2_0001_MR1.long.OAS2_0001/surf/lh.pial:edgecolor=red \</p>
+                  <p>OAS2_0001_MR1.long.OAS2_0001/surf/lh.white:edgecolor=blue \ </p>
+                  <p>OAS2_0001_MR2.long.OAS2_0001/surf/lh.pial:edgecolor=255,128,128 \ </p>
+                  <p>OAS2_0001_MR2.long.OAS2_0001/surf/lh.white:edgecolor=lightblue</p>
+                </td>
+              </tr>
+            </table>
+            <p> </p>
+            <p>Isto irá tomar um pouco de tempo. Você irá ver imagens normalizadas do cérebro sem o crânio (norm.mgz) nos dois pontos no tempo. Você também verá a superfície branca e pial em cada ponto de tempo. O comando abre apenas o hemisfério esquerdo para economizar memória. O tempo1 usa vermelho e azul, enquanto tempo 2 usa rosa e azul claro para as cores de superfície. </p>
+            <p>As superfícies não mudam muito ao longo do tempo. Também pode-se comparar as imagens diretamente. Para isso, desmarcar as 4 caixas em frente as superfícies ou pressionar ctrl+f. Selecionar o primeiro volume norm e usar a opacidade para “misturar” as duas imagens. Tambem pode trocar as imagens usando alt+c ou a opcaidade. Assim é possível observar deformações (atrofias) e também qualquer problema de alinhamento (não seria o caso). Também poderá observar se os ventrículos estão maiores.</p>
+            <p> </p>
+            <h5>Pós-processamento dos dados longitudinais</h5>
+            <p>Para analisar os dados longitudinais, tem diferentes opções. Pode abrir os stats de cada sujeitos (contém estatística como volume de estruturas subcorticais ou espessuras médias de regiões corticais), e esses dados podem alimentar qualquer pacote estatístico para fazer qualquer análise que queira (LME – Linear Mixed Effects Model, por ex). </p>
+            <p>Comando para pegar os dados de todos os sujeitos e criar uma única tabela: <b>asegstats2table</b></p>
+            <p>Comando para passar à uma tabela qdec <b>--qdec-long</b> </p>
+            <p>Tem dois tutoriais para aprender a fazer análises de grupo GLM e QDEC, que ensinam como fazer análise estatística dos mapas de espessura (por ex: encontrar regiões corticais com diferentes espessuras entre os grupos). Abaixo será explicado como preparar os dados e visualizá-los para futuras análises estatísticas, a partir de 2 etapas: </p>
+            <p> 1. Computar algumas medidas para cada sujeito </p>
+            <p> 2. Esta medida pode ser comparada entre grupos (com QDEC) para comparação </p>
+            <p> </p>
+            
+            <h3 style="color:#01A9DB">Longitudinal QDEC Table</h3>
+            <p> <b>QDEC</b> (Query, Design, Estimate, Contrast) é um programa gráfico para fazer análises estatísticas simples dos dados transversais. O objetivo é ajudar os pesquisadores a fazer análises, de grupo e inter sujeito, sobre os dados morfométricos (volume e superfície cortical) produzidos pelo Freesurfer. Alguns objetivos do QDEC são: </p>
+            <ul align="left">
+              <li>1. Selecionar os sujeitos com base em um critério;</li>
+              <li>2. Gerar as entradas necessárias para a máquina estatísitica, o qual, para o mri_glmfit inclui:
+                <p>2.1 uma matriz de Design que se chama X na equação GLM, contendo as variáveis explicativas;</p>
+                <p>2.2 uma matriz de parâmetro Estimada, chamada A na equação GLM e </p>
+                <p>2.3 o(s) vetore(s) Contraste. </p>
+              </li>
+              <li>3. Gera a dados ou imagens de saída</li>
+            </ul>
+            <p>Uma tabela QDEC é uma tabela simples, no formato de texto, que contém os ID's dos sujeitos, (um sujeito por linha), e diferentes co-variáveis por coluna (gênero, idade, diagnósticos, etc). QDEC não faz análises longitudinais diretamente. Para fazer análises longitudinais, muitas ferramentas requerem uma “tabela QDEC longitudinal”. Para ter um dado longitudinal pronto, é necessário criar uma tabela qdec. </p>
+            <p>A primeira coluna (fsid) é correspondente a cada ponto de tempo, a segunda coluna é o nome da base, e assim respectivamente cada coluna indica alguma coisa. É possível ter colunas com o gênero, idade, grupo, etc; o importante é ter a coluna com a idade ou duração do estudo, com a grandeza que se deseja avaliar (anos, meses, depende como se deseja fazer a avaliação da mudança). A coluna fsid contém o ID do ponto de tempo original, não o longitudinal (step3). Os script sabem que isto é uma tabela longitudinal por causa do parâmetro --qdec-long e a coluna fsid-base, e irá processar os dados dos diretórios longitudinais automaticamente. </p>
+            <p><b>qdec.table.dat</b></p>
+            <p>Esta tabela deve conter todos os fatores e variáveis a se considerar. Para controlar quais os fatores que devem aparecer, olhar o <a href="http://freesurfer.net/fswiki/FsTutorial/QdecLevels">TUTORIAL</a>. Para iniciar, fazer um diretório chamado QDEC na pasta dos sujeitos. Salvar a qdec.table.dat lá e quando QDEC rodar, também irá salvar os dados de análise lá.</p>
+            <p>O comando para fazer a tabela é <b>asegstats2table</b>, conforme exemplo abaixo (EUACHO, não achei link que diga exatamente como fazer): </p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">asegstats2table -s SCHM004_visit1.long.template_visit12 -s SCHM004_visit2.long.template_visit12 --tablefile QDEC_TABLE </td>
+              </tr>
+            </table>
+            <p> </p>
+            <p> Para abrir essa tabela, deve-se usar por exemplo: </p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">libreoffice -calc qdec/long.qdec.table.dat
+                  <p> ooffice -calc qdec/long.qdec.table.dat</p>
+                </td>
+              </tr>
+            </table>
+            <p> </p>        
             
           </div>
         </div>
