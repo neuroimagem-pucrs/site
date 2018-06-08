@@ -122,19 +122,62 @@
             
             <h3 style="color:#01A9DB">Reprocessamento</h3>
             <p>Página com todos os tutoriais: <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/TroubleshootingData">Link</a></p>
-            <p><big>1. Correção da Substância Cinza</big></p>
+            <h5>1. Correção da Substância Cinza</h5>
             <p> <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/PialEdits_freeview">Tutorial</a> </p>
             <p> </p>
-            <p><big>2. Correção de Defeitos Topológicos</big></p>
+            <h5>2. Correção de Defeitos Topológicos</h5>
             <p>Às vezes, alguns voxels que são substância branca são excluídos, para corrigir esse defeito é necessário apenas editar o volume wm.mgz.</p>
             <p> <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/TopologicalDefect_freeview">Tutorial</a> </p>
             <p> </p>
-            <p><big>3. Utilizando Pontos de Controle para Corrigir a Normalização de Intensidade</big></p>
+            <h5>3. Utilizando Pontos de Controle para Corrigir a Normalização de Intensidade</h5>
             <p>Às vezes a normalização de intensidade irá falhar por não conseguir determinar apropriadamente a intensidade para a substância branca, o que resulta em uma segmentação de substância branca errônea. Os pontos de controle são manualmente selecionados na localização do volume em que se tem certeza que faz parte da substância branca. </p>
             <p> <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/ControlPoints_freeview">Tutorial</a></p>
             <p> </p>
             
             <h3 style="color:#01A9DB">Processamento Longitudinal</h3>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongProcessing">Tutorial 1</a></p>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongitudinalTutorial">Tutorial 2</a></p>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongitudinalTutorial_tktools">Tutorial 3</a></p>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/LongitudinalProcessing">Etapas de Processamento</a></p>
+            <p>ARTIGO DO MÉTODO: Reuter, M., Schmansky, N.J., Rosas, H.D., Fischl, B. 2012. Within-Subject Template Estimation for Unbiased Longitudinal Image Analysis. Neuroimage 61 (4), 1402-1418.</p>
+            <p><a href="http://reuter.mit.edu/papers/reuter-long12.pdf">BAIXAR!</a></p>
+            <p>Por que longitudinal? Mesmo sujeito, diferentes pontos no tempo. O objetivo é verificar a variação do cérebro do sujeito ao longo do tempo. Um estudo longitudinal reduz a variabilidade da estimativa de morfometria intra-indivíduos, detecta pequenas mudanças ou permite um número menos de sujeitos no estudo, pode ser usada para marcar a progressão da doença (atrofia), melhor estimar o início dos sintomas, para estudar o efeito de drogas, etc. Fazendo dessa forma, reduz ruído, aumenta a confiabilidade e a sensibilidade. </p>
+            <p>O processamento longitudinal consiste em 3 passos: <b>cross</b>, <b>base</b> e <b>long</b>. </p>
+            
+            <h5>1.Processamento separadamente - Cross </h5>
+            <p>Primeiramente processamos os dados separadamente para cada sujeito e visita, utilizando o <i><b>recon-all -all</b></i>.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
+                  <p>cd $SUBJECTS_DIR</p>
+                  <p>recon-all -subjid nome_pasta_vai_criar -i $SUBJECTS_DIR/pasta_imagem_processar/nome_imagem.nii -all</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <h5>2. Templates para cada objeto - Base</h5>
+            <p>É feito o processamento das visitas N do mesmo sujeito, de forma que seja criado um template que tem como saída apenas um diretório.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
+                  <p>cd $SUBJECTS_DIR</p>
+                  <p>recon-all -base nome_da_pasta_que_vai_criar -tp ID_visitaN1 -tp ID_visitaN2 ... -all</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <h5>3. Processamento Longitudinal - Long</h5>
+            <p>Será realizado o processamento longitudinal de fato, cuja saída terá mais dois diretórios, cada um relacionado ao template criado previamente. É feito então o processamento de cada sujeito com seu template de visita. </p>
+             <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
+                  <p>cd $SUBJECTS_DIR</p>
+                  <p>recon-all -long ID_visitaN1 pasta_criada_base -all</p>
+                  <p>recon-all -long ID_visitaN2 pasta_criada_base -all</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
             
             
           </div>
