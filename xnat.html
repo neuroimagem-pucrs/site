@@ -156,9 +156,45 @@
             <figure>
               <img class="img-fluid" src="img/14_xnat.png" alt="">
             </figure> 
-
-            
-            
+            <p> </p>
+            <p><big><b>2. Pelo site - arquivo compactado</b></big></p>
+            <p>Para enviar as imagens de um sujeito através do site, elas precisão estar compactadas. Por esse método, elas podem ser do formato <i><b>.zip</b></i> ou <i><b>.tar.gz</b></i>. Caso os arquivos ainda não estejam compactados, é necessário utilizar a seguinte linha em um terminal (é preciso estar no diretório em que a pasta a ser compactada está): </p>
+            <figure>
+              <img class="img-fluid" src="img/15_xnat.png" alt="">
+              <figcaption><small>Comando sendo executado em um terminal no diretório que contém a pasta a ser compactada</small></figcaption>
+            </figure>
+            <figure>
+              <img class="img-fluid" src="img/16_xnat.png" alt="">
+              <figcaption><small>Compactação das imagens</small></figcaption>
+            </figure>
+            <p>Neste exemplo, a compactação foi feita para <i><b>.tar.gz</b></i>. Esse processo pode demorar algum tempo devido ao tamanho de cada exame. Neste mesmo diretório vai aparecer um arquivo chamado <i>dicom.tar.gz</i>, que é a pasta que contém todas as imagens compactadas, junto com a pasta original.</p>
+            <figure>
+              <img class="img-fluid" src="img/17_xnat.png" alt="">
+              <figcaption><small>Arquivo original e compactado</small></figcaption>
+            </figure>          
+            <p>Com tudo compactado, deve-se ir na janela inicial do XNAT e procurar o ícone <b>Upload >> Images</b> no centro superior da tela. </p>
+            <figure>
+              <img class="img-fluid" src="img/18_xnat.png" alt="">
+            </figure>   
+            <p>Abrirá um processo de envio de imagens diferente, como no item anterior, sem compactação dos dados. Para enviar o arquivo compactado, deve-se entrar no seguinte link que fica no final da página:</p>
+            <figure>
+              <img class="img-fluid" src="img/19_xnat.png" alt="">
+            </figure> 
+            <figure>
+              <img class="img-fluid" src="img/20_xnat.png" alt="">
+            </figure> 
+            <p>Entrando nele, vão abrir duas opções de envio, sendo a primeira utilizando arquivos compactados. No primeiro campo se seleciona o projeto no qual o arquivo será enviado (devendo ele já existir). No segundo se estes vão para o archive (arquivados assim que feito o upload) ou para o prearchive (necessário autorizar o arquivamento). No terceiro ícone se seleciona o arquivo que fora antes compactado (<i>dicom.tar.gz</i>). Feito isso, é só apertar para iniciar o upload. Irá aparecer uma janela abaixo para que se possa acompanhar o processo. </p>
+            <p>Depois que o processo terminar, indo em <b>Home</b>, na janela <b>Recent Data Activity</b>, localizada na lateral direita da tela, vai aparecer o novo sujeito criado com o upload. Neste tipo de upload, apenas o projeto deve existir, sendo o sujeito criado automaticamente pelo XNAT. Deve-se ter um cuidado maior ao enviar as imagens por esse método, por que no XNAT aparece como sujeito o nome da pessoa que realizou o exame. </p>
+            <figure>
+              <img class="img-fluid" src="img/21_xnat.png" alt="">
+            </figure> 
+          
+            <h3 style="color:#01A9DB">Links Úteis</h3>
+            <p> </p>
+            <p>Site do XNAT: <a href="https://www.xnat.org/">Link</a></p>
+            <p>Documentação versão 1.5: <a href="https://wiki.xnat.org/login.action?os_destination=%2Fpages%2Fviewpage.action%3FspaceKey%3DXNAT%26title%3DXNAT%2B1.5%2BDocumentation&permissionViolation=true">Link</a></p>
+            <p>Documentação versão 1.6: <a href="https://wiki.xnat.org/docs16">Link</a></p>
+                        
           </div>
         </div>
       </div>
