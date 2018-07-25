@@ -397,7 +397,7 @@ header.masthead2 .intro-text .intro-heading {
 
 .portfolio-modal {
   padding-right: 0px !important;
-  padding-left: 395px; /*altera a centralização do modal*/
+  left: 21%; /*altera a centralização do modal*/
 }
 
 .portfolio-modal .modal-dialog {
@@ -422,7 +422,7 @@ header.masthead2 .intro-text .intro-heading {
 
 .portfolio-modal .modal-content p {
   margin-bottom: 30px;
-  border-radius: 15px; /*raio da borda da img*/
+  border-radius: 15px; /*raio da borda da img???sei la*/
 }
 
 .portfolio-modal .modal-content p.item-intro {
@@ -444,6 +444,7 @@ header.masthead2 .intro-text .intro-heading {
 
 .portfolio-modal .modal-content img {
   margin-bottom: 30px;
+  border-radius: 10px; /*raio da borda da img... aqui sim*/
 }
 
 .portfolio-modal .modal-content button {
