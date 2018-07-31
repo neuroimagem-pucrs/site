@@ -85,7 +85,9 @@ section h3.section-subheading {
 }
 
 .bt {
-  border:1px solid black;
+  border:1px solid #ffffff;
+  background-color: #caebff;
+  color: #2b99b9;
   border-radius:50px;
   display:inline-block;
   cursor:pointer;
