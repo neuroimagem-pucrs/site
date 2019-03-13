@@ -62,11 +62,11 @@
             <p>Links úteis para FreeSurfer:</p>
             <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall">Download</a></p>
             <p><a href="http://freesurfer.net/fswiki/recon-all">ReconAll</a></p>
-            <p><a href="http://freesurfer.net/fswiki/ReconAllDevTable">FreeSurfer Tutorial: Process Flow</a></p>
+            <p><a href="http://freesurfer.net/fswiki/ReconAllDevTable">FreeSurfer Tutorial - Process Flow</a></p>
             <p> </p>
             <h3 style="color:#01A9DB">Processamento</h3>
             <p> </p>
-            <p><big>1. Rodar freesurfer</big></p>
+            <h5>1. Rodar freesurfer</h5>
             <table border="1" align="center">
               <tr>
                 <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
@@ -76,16 +76,60 @@
              </tr>
             </table>
             <p> </p>
-            <p><big>2. Carregar os volumes, superfícies e segmentação subcortical</big></p>
+            <h5>2. Carregar os volumes, superfícies e segmentação subcortical</h5>
             <table border="1" align="center">
               <tr>
-                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
-                  <p>cd $SUBJECTS_DIR</p>
-                  <p>recon-all -subjid nome_pasta_vai_criar -i ${SUBJECTS_DIR}/pasta_imagem_processar/nome_imagem.nii.gz -all</p>
+                <td bgcolor="lightgray">freeview -v \
+                  <p>/localização_pasta_imagem_processada/mri/T1.mgz \</p>
+                  <p>/localização_pasta_imagem_processada/mri/wm.mgz \</p>
+                  <p>/localização_pasta_imagem_processada/mri/brainmask.mgz \</p>
+                  <p>/localização_pasta_imagem_processada/mri/aseg.mgz:colormap=lut:opacity=0.2 \</p>
+                  <p>-f /localização_pasta_imagem_processada/surf/lh.white:edgecolor=blue \</p>
+                  <p>/localização_pasta_imagem_processada/surf/lh.pial:edgecolor=red \</p>
+                  <p>/localização_pasta_imagem_processada/surf/rh.white:edgecolor=blue \</p>
+                  <p>/localização_pasta_imagem_processada/surf/rh.pial:edgecolor=red</p>
                 </td>
              </tr>
             </table>
             <p> </p>
+            <p>Notas sobre a linha de comando:</p>
+            <p> <b><i>-v</i></b> é utilizado para abrir volumes; </p>
+            <p> <b><i>-brainmask.mgz</i></b> é a linha do crânio; </p>
+            <p> <b><i>-wm.mgz</i></b> é a máscara da substância branca; </p>
+            <p> <b><i>-aseg.mgz</i></b> é a segmentação subcortical carregada com a correspondente tabela de cores com uma baixa opacidade. </p>
+            
+            <p> <b><i>-f</i></b> é utilizado para carregar superfícies: </p>
+            <p>Substância branca e pial são carregadas para cada hemisfério com a cor indicada por 'edgecolor'.</p>
+            <p> </p>
+            
+            <h5>3.Abrir imagens em 3D</h5>
+            <p>O exemplo abaixo é para o hemisfério esquerdo, porém também é possível ver somente o hemisfério direito ou os dois hemisférios ao mesmo tempo.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">freeview -f /localização_pasta_imagem_processada/surf/
+                  <p>lh.pial:annot=aparc.annot:name=pial_aparc:visible=0 \</p>
+                  <p>/localização_pasta_imagem_processada/surf/</p>
+                  <p>lh.inflated:overlay=lh.thickness:overlay_threshold=0.1,3::name=inflated_thickness:visible=0 \</p>
+                  <p>/localização_pasta_imagem_processada/surf/lh.inflated:visible=0 \</p>
+                  <p>/localização_pasta_imagem_processada/surf/lh.white:visible=0 \</p>
+                  <p>/localização_pasta_imagem_processada/surf/lh.pial \</p>
+                  <p>--viewport 3d</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <p>Notas sobre a linha de comando:</p>
+            <p> <b><i>lh.pial:annot=aparc.annot</i></b> carrega a parcela cortical Desikan-Killiany na superfície pial; </p>
+            <p> <b><i>:name=pial_aparc:visible=0</i></b> mostra o nome que aparecerá no display e faz com que essa camada não apareça; </p>
+            <p> <b><i>lh.inflated:overlay=lh.thickness:overlay_threshold=0.1,3</i></b> carrega uma sobreposição sobre a superfície inflada e seta o mínimo e o máximo do display. </p>
+            
+             <p> </p>
+            <h3 style="color:#01A9DB">Reprocessamento</h3>
+            <p> </p>
+            <p><a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/TroubleshootingData">Tutorial</a></p>
+            
+            
+            
             
             
             
