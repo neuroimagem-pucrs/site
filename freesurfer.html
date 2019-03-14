@@ -225,6 +225,123 @@
              </tr>
             </table>
             <h5>2. Templates para cada objeto - Base</h5>
+            <p>É feito o processamento das visitas N do mesmo sujeito, de forma que seja criado um template que tem como saída apenas um diretório.</p>
+               <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
+                  <p>cd $SUBJECTS_DIR</p>
+                  <p>recon-all -base nome_da_pasta_que_vai_criar -tp ID_visitaN1 -tp ID_visitaN2 ... -all</p>
+                </td>
+             </tr>
+            </table>
+            <h5>3. Processamento Longitudinal - Long</h5>
+            <p>Será realizado o processamento longitudinal de fato, cuja saída terá mais dois diretórios, cada um relacionado ao template criado previamente. É feito então o processamento de cada sujeito com seu template de visita.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
+                  <p>cd $SUBJECTS_DIR</p>
+                  <p>recon-all -long ID_visitaN1 pasta_criada_base -all</p>
+                  <p>recon-all -long ID_visitaN2 pasta_criada_base -all</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <h3 style="color:#01A9DB">Reprocessamento Longitudinal</h3>
+            <p>Primeiramente vamos inspecionar o template (base) de um único sujeito. Abrir a imagem norm.mgz e superfícies no Freeviw, na visualização coronal.</p>
+             <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">freeview -v OAS2_0001/mri/norm.mgz \
+                  <p>-f OAS2_0001/surf/lh.pial:edgecolor=red \</p>
+                  <p>OAS2_0001/surf/rh.pial:edgecolor=red \</p>
+                  <p>OAS2_0001/surf/lh.white:edgecolor=blue \</p>
+                  <p>OAS2_0001/surf/rh.white:edgecolor=blue</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <p>Isto irá mostrar o template (base) que é a anatomia média dos sujeitos ao longo do tempo sobrepostos com a superfície pial e da substância branca. Devem ser inspecionadas as superfícies nesta imagem, verificar se as superfícies seguem a substância branca e cinzenta. Em seguida, deve-se verificar os resultados longitudinais. Com o comando abaixo, a base e o long estarão no mesmo voxel. Portanto, essas imagens poderão ser diretamente comparadas se abertas uma em cima da outra.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">freeview -v OAS2_0001_MR1.long.OAS2_0001/mri/norm.mgz \
+                  <p>OAS2_0001_MR2.long.OAS2_0001/mri/norm.mgz \</p>
+                  <p>-f OAS2_0001_MR1.long.OAS2_0001/surf/lh.pial:edgecolor=red \</p>
+                  <p>OAS2_0001_MR1.long.OAS2_0001/surf/lh.white:edgecolor=blue \</p>
+                  <p>OAS2_0001_MR2.long.OAS2_0001/surf/lh.pial:edgecolor=255,128,128 \<p>
+                  <p>OAS2_0001_MR2.long.OAS2_0001/surf/lh.white:edgecolor=lightblue<p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <p>Você irá ver imagens normalizadas do cérebro sem o crânio (norm.mgz) nos dois pontos no tempo. Você também verá a superfície branca e pial em cada ponto de tempo. O comando abre apenas o hemisfério esquerdo para economizar memória. O tempo1 usa vermelho e azul, enquanto tempo 2 usa rosa e azul claro para as cores de superfície.</p>
+            <p>As superfícies não mudam muito ao longo do tempo. Também pode-se comparar as imagens diretamente. Para isso, desmarcar as 4 caixas em frente as superfícies ou pressionar ctrl+f. Selecionar o primeiro volume norm e usar a opacidade para “misturar” as duas imagens. Tambem pode trocar as imagens usando alt+c ou a opacidade. Assim é possível observar deformações (atrofias) e também qualquer problema de alinhamento (não seria o caso). Também poderá observar se os ventrículos estão maiores.</p>
+            <p>Para analisar os dados longitudinais se pode abrir os stats de cada sujeitos (contém estatística como volume de estruturas subcorticais ou espessuras médias de regiões corticais) e esses dados podem alimentar qualquer pacote estatístico para fazer qualquer análise que queira (LME – Linear Mixed Effects Model, por ex).</p>
+            <p>Comando para pegar os dados de todos os sujeitos e criar uma única tabela: asegstats2table</p>
+            <p>Comando para passar à uma tabela qdec --qdec-long</p>
+            <p> </p>
+            <h3 style="color:#01A9DB">QDEC</h3>
+            <p> </p>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/QdecGroupAnalysis_freeview">Tutorial</a></p>
+            <p>Os passos 1 - 3 só precisam ser feitos se esta gerando novos dados para o QDEC</p>
+            <h5>1. Utilizar o qcache antes de começar e criar uma pasta chamada QDEC, onde serão salvas as imagens</h5>
+            <p>Utilizar o script abaixo que vai organizar as pastas processadas, rodar o qcache e gerar o fsaverage.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">set subjs=(001 002 ...)
+                  <p>foreach subj ($subjs)</p>
+                  <p>cd /pasta_onde_esta_a_imagem</p>
+                  <p>cp -a nome_pasta ${subj}</p>
+                  <p>mv ${subj}  /.../QDEC</p>
+                  <p>cd /pasta_onde_esta_a_imagem<p>
+                  <p>cp -a fsaverage subj${subj}<p>
+                  <p>mv subj${subj} /.../QDEC<p>
+                  <p>end<p>
+                  <p>setenv SUBJECTS_DIR "/.../QDEC"<p>
+                  <p>cd ${SUBJECTS_DIR}<p>
+                  <p>foreach subj ($subjs)<p>
+                  <p>	recon-all -s ${subj} -qcache<p>
+                  <p>end<p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <h5>2. Preciso de um fsaverage no diretório do freesurfer, para isso utilizar o script abaixo e colocar o ID de cada sujeito corretamente para ser feito.</h5>
+            <p>Vai gerar a pasta avgsubject dentro da pasta QDEC.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/.../QDEC
+                  <p>cd${SUBJECTS_DIR}</p>
+                  <p>make_average_subject --out avgsubject --subjects subj001 subj002 subj...</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <h5>3. Criar na pasta QDEC uma tabela de entrada principal chamada qdec.table.dat, com as informações a serem analisadas, como no exemplo abaixo.</h5>
+            <p>Mudar essa tabela se necessário incluir mais sujeitos, nesse caso refazer os passos 1 e 2.</p>
+             <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">fsid    gender  age	JVQ	CTQ
+                  <p>001     male    12       5	  49</p>
+                  <p>002     female  12       2    	42</p>
+                  <p>004     male    11      14      50</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            <h5>4. Para abrir o Qdec utilizar o script abaixo.</h5>
+            <p>Apos abrir o qdec seguir o passo a passo do tutorial com o link acima a partir de Subjects.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/.../QDEC
+                  <p>cd ${SUBJECTS_DIR}</p>
+                  <p>qdec &</p>
+                </td>
+             </tr>
+            </table>
+            <p> </p>
+            
+            
+            
+            
             
             
             
