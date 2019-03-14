@@ -212,11 +212,19 @@
             <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongitudinalTutorial">Processamento</a></p>
             <p>O objetivo é verificar a variação do cérebro do sujeito ao longo do tempo. Um estudo longitudinal reduz a variabilidade da estimativa de morfometria intra-indivíduos, detecta pequenas mudanças ou permite um número menos de sujeitos no estudo, pode ser usada para marcar a progressão da doença (atrofia), melhor estimar o início dos sintomas, para estudar o efeito de drogas, por exemplo. Fazendo dessa forma, reduz ruído, aumenta a confiabilidade e a sensibilidade.</p>
             <p> </p>
-            
-            
-            
-            
-            
+            <p>O processamento longitudinal consiste em 3 passos: cross, base e long.</p>
+            <p> </p>
+             <h5>1. Processamento Separadamente - Cross</h5>
+            <p>Primeiramente processamos os dados separadamente para cada sujeito e visita, utilizando o recon-all -all.</p>
+            <table border="1" align="center">
+              <tr>
+                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
+                  <p>cd $SUBJECTS_DIR</p>
+                  <p>recon-all -subjid nome_pasta_vai_criar -i $SUBJECTS_DIR/pasta_imagem_processar/nome_imagem.nii -all</p>
+                </td>
+             </tr>
+            </table>
+            <h5>2. Templates para cada objeto - Base</h5>
             
             
             
