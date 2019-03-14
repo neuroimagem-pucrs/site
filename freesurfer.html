@@ -339,216 +339,46 @@
             </table>
             <p> </p>
             
-            
-            
-            
-            
-            
-            
-            
-            <h3 style="color:#01A9DB">Abrir imagens depois de processadas - Freeview</h3>
-            <p><big>1. Carregando os volumes, superfícies e segmentação subcortical</big></p>
-            <table border="1" align="center">
+            <h3 style="color:#01A9DB">Planilhas</h3>
+            <h5>1. Gerar planilha do aseg</h5>
+            <p> </p>
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/asegstats2table">Planilha aseg</a></p>
+                        <table border="1" align="center">
               <tr>
-                <td bgcolor="lightgray">freeview -v \
-                  <p>/localização_pasta_imagem_processada/mri/T1.mgz \</p>
-                  <p>/localização_pasta_imagem_processada/mri/wm.mgz \</p>
-                  <p>/localização_pasta_imagem_processada/mri/brainmask.mgz \</p>
-                  <p>/localização_pasta_imagem_processada/mri/aseg.mgz:colormap=lut:opacity=0.2 \</p>
-                  <p>-f /localização_pasta_imagem_processada/surf/lh.white:edgecolor=blue \</p>
-                  <p>/localização_pasta_imagem_processada/surf/lh.pial:edgecolor=red \</p>
-                  <p>/localização_pasta_imagem_processada/surf/rh.white:edgecolor=blue \</p>
-                  <p>/localização_pasta_imagem_processada/surf/rh.pial:edgecolor=red</p>
+                <td bgcolor="lightgray">asegstats2table --subjects bert ernie fred --meas volume --tablefile aseg_stats.txt
                 </td>
              </tr>
             </table>
+            <p>O script irá gerar uma planilha do arquivo aseg.stats do freesurfer.</p>
+            <h5>1. Gerar planilha do aseg</h5>
             <p> </p>
-            <p>Notas sobre a linha de comando:</p>
-            <p> <b><i>-v</i></b> é utilizado para abrir volumes; </p>
-            <p> <b><i>-brainmask.mgz</i></b> é a linha do crânio; </p>
-            <p> <b><i>-wm.mgz</i></b> é a máscara da substância branca; </p>
-            <p> <b><i>-aseg.mgz</i></b> é a segmentação subcortical carregada com a correspondente tabela de cores com uma baixa opacidade. </p>
-            
-            <p> <b><i>-f</i></b> é utilizado para carregar superfícies: </p>
-            <p>Substância branca e pial são carregadas para cada hemisfério com a cor indicada por 'edgecolor'.</p>
-            <p> </p>
-            <p><big>2. Carregando imagens em 3D </big></p>
-            <p>O exemplo abaixo é para o hemisfério esquerdo, porém também é possível ver somente o hemisfério direito ou os dois hemisférios ao mesmo tempo. </p>
-            <table border="1" align="center">
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/asegstats2table">Planilha aseg</a></p>
+                        <table border="1" align="center">
               <tr>
-                <td bgcolor="lightgray">freeview -f  /localização_pasta_imagem_processada/surf/lh.pial:annot=aparc.annot:name=pial_aparc:visible=0 \
-                  <p>/localização_pasta_imagem_processada/surf/lh.inflated:overlay=lh.thickness:overlay_threshold=0.1,3::name=inflated_thickness:visible=0 \</p>
-                  <p>/localização_pasta_imagem_processada/surf/lh.inflated:visible=0 \</p>
-                  <p>/localização_pasta_imagem_processada/surf/lh.white:visible=0 \</p>
-                  <p>/localização_pasta_imagem_processada/surf/lh.pial \</p>
-                  <p>--viewport 3d</p>
+                <td bgcolor="lightgray">asegstats2table --subjects bert ernie fred --meas volume --tablefile aseg_stats.txt
                 </td>
              </tr>
             </table>
-            <p> </p>
-            <p>Notas sobre a linha de comando:</p>
-            <p> <b><i>lh.pial:annot=aparc.annot</i></b> carrega a parcela cortical Desikan-Killiany na superfície pial; </p>
-            <p> <b><i>:name=pial_aparc:visible=0</i></b> mostra o nome que aparecerá no display e faz com que essa camada não apareça; </p>
-            <p> <b><i>lh.inflated:overlay=lh.thickness:overlay_threshold=0.1,3</i></b> carrega uma sobreposição sobre a superfície inflada e seta o mínimo e o máximo do display. </p>
-            
-            <h3 style="color:#01A9DB">Reprocessamento</h3>
-            <p>Página com todos os tutoriais: <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/TroubleshootingData">Link</a></p>
-            <h5>1. Correção da Substância Cinza</h5>
-            <p> <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/PialEdits_freeview">Tutorial</a> </p>
-            <p> </p>
-            <h5>2. Correção de Defeitos Topológicos</h5>
-            <p>Às vezes, alguns voxels que são substância branca são excluídos, para corrigir esse defeito é necessário apenas editar o volume wm.mgz.</p>
-            <p> <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/TopologicalDefect_freeview">Tutorial</a> </p>
-            <p> </p>
-            <h5>3. Utilizando Pontos de Controle para Corrigir a Normalização de Intensidade</h5>
-            <p>Às vezes a normalização de intensidade irá falhar por não conseguir determinar apropriadamente a intensidade para a substância branca, o que resulta em uma segmentação de substância branca errônea. Os pontos de controle são manualmente selecionados na localização do volume em que se tem certeza que faz parte da substância branca. </p>
-            <p> <a href="http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/ControlPoints_freeview">Tutorial</a></p>
-            <p> </p>
-            
-            <h3 style="color:#01A9DB">Processamento Longitudinal</h3>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongProcessing">Tutorial 1</a></p>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongitudinalTutorial">Tutorial 2</a></p>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/LongitudinalTutorial_tktools">Tutorial 3</a></p>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/LongitudinalProcessing">Etapas de Processamento</a></p>
-            <p>ARTIGO DO MÉTODO: Reuter, M., Schmansky, N.J., Rosas, H.D., Fischl, B. 2012. Within-Subject Template Estimation for Unbiased Longitudinal Image Analysis. Neuroimage 61 (4), 1402-1418.</p>
-            <p><a href="http://reuter.mit.edu/papers/reuter-long12.pdf">BAIXAR!</a></p>
-            <p>Por que longitudinal? Mesmo sujeito, diferentes pontos no tempo. O objetivo é verificar a variação do cérebro do sujeito ao longo do tempo. Um estudo longitudinal reduz a variabilidade da estimativa de morfometria intra-indivíduos, detecta pequenas mudanças ou permite um número menos de sujeitos no estudo, pode ser usada para marcar a progressão da doença (atrofia), melhor estimar o início dos sintomas, para estudar o efeito de drogas, etc. Fazendo dessa forma, reduz ruído, aumenta a confiabilidade e a sensibilidade. </p>
-            <p>O processamento longitudinal consiste em 3 passos: <b>cross</b>, <b>base</b> e <b>long</b>. </p>
-            
-            <h5>1.Processamento separadamente - Cross </h5>
-            <p>Primeiramente processamos os dados separadamente para cada sujeito e visita, utilizando o <i><b>recon-all -all</b></i>.</p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
-                  <p>cd $SUBJECTS_DIR</p>
-                  <p>recon-all -subjid nome_pasta_vai_criar -i $SUBJECTS_DIR/pasta_imagem_processar/nome_imagem.nii -all</p>
-                </td>
-             </tr>
-            </table>
-            <p> </p>
-            <h5>2. Templates para cada objeto - Base</h5>
-            <p>É feito o processamento das visitas N do mesmo sujeito, de forma que seja criado um template que tem como saída apenas um diretório.</p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
-                  <p>cd $SUBJECTS_DIR</p>
-                  <p>recon-all -base nome_da_pasta_que_vai_criar -tp ID_visitaN1 -tp ID_visitaN2 ... -all</p>
-                </td>
-             </tr>
-            </table>
-            <p> </p>
-            <h5>3. Processamento Longitudinal - Long</h5>
-            <p>Será realizado o processamento longitudinal de fato, cuja saída terá mais dois diretórios, cada um relacionado ao template criado previamente. É feito então o processamento de cada sujeito com seu template de visita. </p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">export SUBJECTS_DIR=/pastas_imagens
-                  <p>cd $SUBJECTS_DIR</p>
-                  <p>recon-all -long ID_visitaN1 pasta_criada_base -all</p>
-                  <p>recon-all -long ID_visitaN2 pasta_criada_base -all</p>
-                </td>
-             </tr>
-            </table>
-            <p> </p>
-            <h3 style="color:#01A9DB">QDEC</h3>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/QdecGroupAnalysis_freeview">Tutorial</a></p>
-            <h5 style="color:#01A9DB">Tabelas para Excel</h5>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/asegstats2table">Tutorial Aseg</a></p>
-            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/aparcstats2table">Tutorial Aparc</a></p>
-            <h5>1. Gerar planilhas do aseg</h5>
-            <p>O script irá gerar uma planilha do arquivo <b>aseg.stats</b> do freesurfer.</p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">asegstats2table --subjects bert ernie fred --meas volume --tablefile aseg_stats.txt </td>
-              </tr>
-            </table>
-            <p> </p>
-            <p>Esse comando irá combinar os arquivos <b>aseg.stats</b> de bert ernie e fred para gerar a tabela <b>aseg_stats.txt</b>.</p>
+            <p>O script irá gerar uma planilha do arquivo aseg.stats do freesurfer.</p>
             
             <h5>2. Gerar planilhas do aparc</h5>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">aparcstats2table --subjects bert ernie fred --hemi rh --meas thickness --tablefile aparc_stats.txt </td>
-              </tr>
-            </table>
             <p> </p>
-            <p>O comando acima irá combinar o arquivo <b>rh.aparc.stats</b> dos sujeitos bert ernie e fred para criar uma tabela <b>aparc_stats.txt</b>, que irá mostrar a grossura de todas as estruturas do arquivo original.</p>
-            <p>Se por acaso você quiser outra informação, como da planilha <b>lh.aparc.a2009s.stats</b> pode-se usar <b>--parc aparc.a2009s</b> e além disso se quiser algo além de grossura pode-se especificar em <b>--meas</b> com area, volume ou meancurve.</p>
-            <table border="1" align="center">
+            <p><a href="https://surfer.nmr.mgh.harvard.edu/fswiki/aparcstats2table">Planilha aparc</a></p>
+                        <table border="1" align="center">
               <tr>
-                <td bgcolor="lightgray">aparcstats2table --hemi rh --subjects bert ernie fred --parc aparc.a2009s --meas meancurve --tablefile lh.a2005s.meancurve.txt</td>
-              </tr>
-            </table>
-            <p> </p>
-            
-            <h5>3. Inspecionando os Dados Longitudinais</h5>
-            <p>Primeiramente vamos inspecionar o template (base) de um único sujeito. Abrir a imagem <b>norm.mgz</b> e superfícies no Freeviwe, na visualização coronal.</p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">freeview -v OAS2_0001/mri/norm.mgz \
-                  <p>-f OAS2_0001/surf/lh.pial:edgecolor=red \</p>
-                  <p>OAS2_0001/surf/rh.pial:edgecolor=red \</p>
-                  <p>OAS2_0001/surf/lh.white:edgecolor=blue \</p>
-                  <p>OAS2_0001/surf/rh.white:edgecolor=blue </p>
+                <td bgcolor="lightgray">aparcstats2table --subjects bert ernie fred --hemi rh --meas thickness --tablefile aparc_stats.txt
                 </td>
-              </tr>
+             </tr>
             </table>
+            <p>O comando acima irá combinar o arquivo rh.aparc.stats dos sujeitos bert ernie e fred para criar uma tabela aparc_stats.txt, que irá mostrar a grossura de todas as estruturas do arquivo original.</p>
+            <p>Se por acaso você quiser outra informação, como da planilha lh.aparc.a2009s.stats pode-se usar --parc aparc.a2009s e além disso se quiser algo além de grossura pode-se especificar em --meas com area, volume ou meancurve.</p>
             <p> </p>
-            <p>Isto irá mostrar o template (base) que é a anatomia média dos sujeitos ao longo do tempo sobrepostos com a superfície pial e da substância branca. Se o registro disto falhou, será visto uma imagem borrada ou com “fantasmas”. Devem ser inspecionadas as superfícies nesta imagem. Isto é importante quando as superfícies são transferidas no processamento longitudinal, por isso devem estar acuradas na base. Verificar se as superfícies seguem a substância branca e cinzenta. Em seguida, deve-se verificar os resultados longitudinais. Com o comando abaixo, a base e o long estarão no mesmo voxel. Portanto, essas imagens poderão ser diretamente comparadas se abertas uma em cima da outra.</p>
-            <table border="1" align="center">
+                                    <table border="1" align="center">
               <tr>
-                <td bgcolor="lightgray">freeview -v OAS2_0001_MR1.long.OAS2_0001/mri/norm.mgz \
-                  <p>OAS2_0001_MR2.long.OAS2_0001/mri/norm.mgz \</p>
-                  <p>-f OAS2_0001_MR1.long.OAS2_0001/surf/lh.pial:edgecolor=red \</p>
-                  <p>OAS2_0001_MR1.long.OAS2_0001/surf/lh.white:edgecolor=blue \ </p>
-                  <p>OAS2_0001_MR2.long.OAS2_0001/surf/lh.pial:edgecolor=255,128,128 \ </p>
-                  <p>OAS2_0001_MR2.long.OAS2_0001/surf/lh.white:edgecolor=lightblue</p>
+                <td bgcolor="lightgray">aparcstats2table --hemi rh --subjects bert ernie fred --parc aparc.a2009s --meas meancurve --tablefile lh.a2005s.meancurve.txt
                 </td>
-              </tr>
-            </table>
-            <p> </p>
-            <p>Isto irá tomar um pouco de tempo. Você irá ver imagens normalizadas do cérebro sem o crânio (norm.mgz) nos dois pontos no tempo. Você também verá a superfície branca e pial em cada ponto de tempo. O comando abre apenas o hemisfério esquerdo para economizar memória. O tempo1 usa vermelho e azul, enquanto tempo 2 usa rosa e azul claro para as cores de superfície. </p>
-            <p>As superfícies não mudam muito ao longo do tempo. Também pode-se comparar as imagens diretamente. Para isso, desmarcar as 4 caixas em frente as superfícies ou pressionar ctrl+f. Selecionar o primeiro volume norm e usar a opacidade para “misturar” as duas imagens. Tambem pode trocar as imagens usando alt+c ou a opcaidade. Assim é possível observar deformações (atrofias) e também qualquer problema de alinhamento (não seria o caso). Também poderá observar se os ventrículos estão maiores.</p>
-            <p> </p>
-            <h5>Pós-processamento dos dados longitudinais</h5>
-            <p>Para analisar os dados longitudinais, tem diferentes opções. Pode abrir os stats de cada sujeitos (contém estatística como volume de estruturas subcorticais ou espessuras médias de regiões corticais), e esses dados podem alimentar qualquer pacote estatístico para fazer qualquer análise que queira (LME – Linear Mixed Effects Model, por ex). </p>
-            <p>Comando para pegar os dados de todos os sujeitos e criar uma única tabela: <b>asegstats2table</b></p>
-            <p>Comando para passar à uma tabela qdec <b>--qdec-long</b> </p>
-            <p>Tem dois tutoriais para aprender a fazer análises de grupo GLM e QDEC, que ensinam como fazer análise estatística dos mapas de espessura (por ex: encontrar regiões corticais com diferentes espessuras entre os grupos). Abaixo será explicado como preparar os dados e visualizá-los para futuras análises estatísticas, a partir de 2 etapas: </p>
-            <p> 1. Computar algumas medidas para cada sujeito </p>
-            <p> 2. Esta medida pode ser comparada entre grupos (com QDEC) para comparação </p>
-            <p> </p>
-            
-            <h3 style="color:#01A9DB">Longitudinal QDEC Table</h3>
-            <p> <b>QDEC</b> (Query, Design, Estimate, Contrast) é um programa gráfico para fazer análises estatísticas simples dos dados transversais. O objetivo é ajudar os pesquisadores a fazer análises, de grupo e inter sujeito, sobre os dados morfométricos (volume e superfície cortical) produzidos pelo Freesurfer. Alguns objetivos do QDEC são: </p>
-            <ul align="left">
-              <li>1. Selecionar os sujeitos com base em um critério;</li>
-              <li>2. Gerar as entradas necessárias para a máquina estatísitica, o qual, para o mri_glmfit inclui:
-                <p>2.1 uma matriz de Design que se chama X na equação GLM, contendo as variáveis explicativas;</p>
-                <p>2.2 uma matriz de parâmetro Estimada, chamada A na equação GLM e </p>
-                <p>2.3 o(s) vetore(s) Contraste. </p>
-              </li>
-              <li>3. Gera a dados ou imagens de saída</li>
-            </ul>
-            <p>Uma tabela QDEC é uma tabela simples, no formato de texto, que contém os ID's dos sujeitos, (um sujeito por linha), e diferentes co-variáveis por coluna (gênero, idade, diagnósticos, etc). QDEC não faz análises longitudinais diretamente. Para fazer análises longitudinais, muitas ferramentas requerem uma “tabela QDEC longitudinal”. Para ter um dado longitudinal pronto, é necessário criar uma tabela qdec. </p>
-            <p>A primeira coluna (fsid) é correspondente a cada ponto de tempo, a segunda coluna é o nome da base, e assim respectivamente cada coluna indica alguma coisa. É possível ter colunas com o gênero, idade, grupo, etc; o importante é ter a coluna com a idade ou duração do estudo, com a grandeza que se deseja avaliar (anos, meses, depende como se deseja fazer a avaliação da mudança). A coluna fsid contém o ID do ponto de tempo original, não o longitudinal (step3). Os script sabem que isto é uma tabela longitudinal por causa do parâmetro --qdec-long e a coluna fsid-base, e irá processar os dados dos diretórios longitudinais automaticamente. </p>
-            <p><b>qdec.table.dat</b></p>
-            <p>Esta tabela deve conter todos os fatores e variáveis a se considerar. Para controlar quais os fatores que devem aparecer, olhar o <a href="http://freesurfer.net/fswiki/FsTutorial/QdecLevels">TUTORIAL</a>. Para iniciar, fazer um diretório chamado QDEC na pasta dos sujeitos. Salvar a qdec.table.dat lá e quando QDEC rodar, também irá salvar os dados de análise lá.</p>
-            <p>O comando para fazer a tabela é <b>asegstats2table</b>, conforme exemplo abaixo (EUACHO, não achei link que diga exatamente como fazer): </p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">asegstats2table -s SCHM004_visit1.long.template_visit12 -s SCHM004_visit2.long.template_visit12 --tablefile QDEC_TABLE </td>
-              </tr>
-            </table>
-            <p> </p>
-            <p> Para abrir essa tabela, deve-se usar por exemplo: </p>
-            <table border="1" align="center">
-              <tr>
-                <td bgcolor="lightgray">libreoffice -calc qdec/long.qdec.table.dat
-                  <p> ooffice -calc qdec/long.qdec.table.dat</p>
-                </td>
-              </tr>
-            </table>
-            <p> </p>        
+             </tr>
+            </table>     
             
           </div>
         </div>
